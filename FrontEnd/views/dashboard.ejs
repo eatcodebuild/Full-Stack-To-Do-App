@@ -264,7 +264,7 @@
             const response = await fetch(`${url}/tasks`, options);
 
             if (!response.ok) {
-                throw new Error(`Failed to post task: ${response.status} - ${response.text()}`);
+                throw new Error(`Failed to post task: ${response.status}`);
             }
 
             const data = await response.json();
