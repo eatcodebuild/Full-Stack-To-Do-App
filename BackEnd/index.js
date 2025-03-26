@@ -24,8 +24,11 @@ app.use(cors("*"));
 app.use(session({
     secret: process.env.MY_SECRET_KEY,                  // This is a secret string used by express-session to sign the session ID cookie.
     resave: false,                               // This option determines whether to save the session to the store (e.g., a database or memory store) even if the session was not modified.
-    saveUninitialized: true,                           // This option controls whether to save a session that has not been initialized (i.e., a session with no data in it).
-    cookie: {secure: process.env.COOKIE_SECURE_TYPE === 'production'}  // This option configures the session cookie. The secure flag ensures the cookie is only sent over HTTPS connections. (true for HTTPS or false for HTTP)
+    saveUninitialized: false,                           // This option controls whether to save a session that has not been initialized (i.e., a session with no data in it).
+    cookie: {
+        secure: process.env.COOKIE_SECURE_TYPE === 'production', // This option configures the session cookie. The secure flag ensures the cookie is only sent over HTTPS connections. (true for HTTPS or false for HTTP)
+        maxAge: 24 * 60 * 60 * 1000 // 1-day session
+    }  
 }));
 
 
@@ -130,6 +133,10 @@ app.get('/signup', (req, res) => {
 
 // To create new tasks and save them to the database - (with users)
 app.post('/tasks', async (req, res) => {
+
+    console.log("Session Data:", req.session);  // Debugging log
+    console.log("User ID:", req.session.userId);
+    
     try {
         const { title, description, dueDate, completed } = req.body; // Extract data from front end request
 
