@@ -133,15 +133,21 @@ app.post('/tasks', async (req, res) => {
     try {
         const { title, description, dueDate, completed } = req.body; // Extract data from front end request
 
+        console.log("checkpoint a");
+
         if (!title || !description || !dueDate) {
-            return res.status(400).json({ Error: "All fields are required!" })
+            return res.status(400).json({ Error: "All fields are required!" });
         }
+
+        console.log("checkpoint b");
 
         const userId = req.session.userId;                                      
 
         if (!userId) {                                                                                 
             return res.status(400).json({ Error: 'User not logged in'});
         }
+
+        console.log("checkpoint c");
 
         const taskData = { title, description, dueDate, completed, user: userId };                  
         const createTask = new Task(taskData); // Create new task model with extracted data
