@@ -14,7 +14,7 @@ const app = express(); // allows you to use express framework for request/functi
 
 
 app.use(express.json()); // midddleware - translates incoming JSON formats to easy-to-read Javascript objects example: from JSON { "example": "This is an example" } → to Javascript Object { example: "This is an example"}
-app.use(cors());
+app.use(cors("*"));
 
 
 
