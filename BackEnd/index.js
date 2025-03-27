@@ -4,6 +4,7 @@ const cors = require('cors'); // This is used when you are deploying your front 
 const path = require("path"); // Enables the backend (server) to connect to the front end (HTML Pages) and display them
 const bcrypt = require('bcrypt'); // Enables hashing of passwords
 const session = require('express-session');  // enables users to login and logout using a session
+const MongoStore = require('connect-mongo');
 require('dotenv').config(); // Enables use of .env file
 const port = 3000; // Port number the app is running on: http://localhost:3000
 
@@ -24,7 +25,11 @@ app.use(cors("*"));
 app.use(session({
     secret: process.env.MY_SECRET_KEY,                  // This is a secret string used by express-session to sign the session ID cookie.
     resave: false,                               // This option determines whether to save the session to the store (e.g., a database or memory store) even if the session was not modified.
-    saveUninitialized: false,                           // This option controls whether to save a session that has not been initialized (i.e., a session with no data in it).
+    saveUninitialized: false,          // This option controls whether to save a session that has not been initialized (i.e., a session with no data in it).
+    store: MongoStore.create({
+        mongoUrl: process.env.MONGO_DB_URI,
+        ttl: 14 * 24 * 60 * 60
+    }),                          
     cookie: {
         secure: process.env.COOKIE_SECURE_TYPE === 'production', // This option configures the session cookie. The secure flag ensures the cookie is only sent over HTTPS connections. (true for HTTPS or false for HTTP)
         maxAge: 24 * 60 * 60 * 1000 // 1-day session
