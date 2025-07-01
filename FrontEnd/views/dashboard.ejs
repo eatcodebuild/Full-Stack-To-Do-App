@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To Do App | Dashboard</title>
+    <title>ListMe | Dashboard</title>
     <link rel="apple-touch-icon" sizes="180x180" href="/Images/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/Images/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/Images/favicon-16x16.png">
@@ -26,9 +26,6 @@
                 </button>
                 <div class="collapse navbar-collapse " id="navbarNav">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/home">Home</a>
-                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/pricing">Pricing</a>
                         </li>
@@ -97,7 +94,7 @@
             <p class="text-white m-0 d-none d-md-block">|</p>
             <a class="nav-link" href="#">Terms of Service</a>
             <p class="text-white mb-0 me-3 d-none d-md-block">|</p>
-            <p class="text-white m-0"> To Do App &COPY; 2025 All Rights Reserved</p>
+            <p class="text-white m-0"> ListMe &COPY; 2025 All Rights Reserved</p>
         </div>
     </footer>
 
@@ -300,11 +297,11 @@
                 li.innerHTML = task.completed ?
                 `
                 <div class="d-flex justify-content-between align-items-center">
-                    <h4>${task.title}</h4>
+                    <h4 class="text-decoration-line-through opacity-50">${task.title}</h4>
                     <button id="deleteButton" type="button" class="btn-close delete" data-id="${task._id}" aria-label="Close"></button>
                 </div>
-                <p>${task.description}</p>
-                <p><strong>Due: </strong>${new Date(task.dueDate).toLocaleDateString()}</p>
+                <p class="text-decoration-line-through opacity-50">${task.description}</p>
+                <p class="text-decoration-line-through opacity-50"><strong>Due: </strong>${new Date(task.dueDate).toLocaleDateString()}</p>
                 <div>
                     <button data-id="${task._id}" class="btn btn-primary shadow-sm notDone" type="button">Not done</button>
                 </div>
