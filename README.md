@@ -72,4 +72,4 @@ Thank you for reviewing the technical overview of this project. This application
 
 *Ryan Jeffrey*  
 Full-Stack Developer  
-[GitHub](https://github.com/eatcodebuild) | [LinkedIn](https://linkedin.com/in/ryanjeffrey)
+[GitHub](https://github.com/eatcodebuild) | [LinkedIn](https://linkedin.com/in/ryan-c-jeffrey)
